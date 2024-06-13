@@ -1,0 +1,14 @@
+- name: Disable automatic updates
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+
+- name: Disable AppArmor
+  systemd:
+    name: apparmor
+    enabled: no
+    state: stopped
+
+- name: Turn off swap
+  command: swapoff -a
+  become: yes
